@@ -14,9 +14,15 @@ def checkOneEdit(source, target):
     if abs(len(source) - len(target)) > 1:
         return False
 
+    not_matched = 0
     for char in target:
         if char in source:
             source.remove(char)
+        else:
+            not_matched += 1
+
+        if not_matched > 1:
+            return False
 
         if len(source) == 0:
             break
@@ -28,17 +34,35 @@ def checkOneEdit(source, target):
 
 
 class TestOneAway(unittest.TestCase):
-    data = [
-        (('pale', 'ple'), True),
-        (('pales', 'pale'), True),
-        (('pale', 'bale'), True),
-        (('pale', 'bake'), False)
+    data = data = [
+        ('pale', 'ple', True),
+        ('pales', 'pale', True),
+        ('pale', 'bale', True),
+        ('paleabc', 'pleabc', True),
+        ('pale', 'ble', False),
+        ('a', 'b', True),
+        ('', 'd', True),
+        ('d', 'de', True),
+        ('pale', 'pale', True),
+        ('pale', 'ple', True),
+        ('ple', 'pale', True),
+        ('pale', 'bale', True),
+        ('pale', 'bake', False),
+        ('pale', 'pse', False),
+        ('ples', 'pales', True),
+        ('pale', 'pas', False),
+        ('pas', 'pale', False),
+        ('pale', 'pkle', True),
+        ('pkle', 'pable', False),
+        ('pal', 'palks', False),
+        ('palks', 'pal', False)
     ]
 
     def test(self):
-        for case in self.data:
-            res = checkOneEdit(case[0][0], case[0][1])
-            self.assertEqual(res, case[1])
+        for [str1, str2, expected] in self.data:
+            res = checkOneEdit(str1, str2)
+
+            self.assertEqual(res, expected)
 
 
 if __name__ == '__main__':
