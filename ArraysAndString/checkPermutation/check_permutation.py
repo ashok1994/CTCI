@@ -4,7 +4,7 @@
 import unittest
 
 
-def checkPermutation(string1, string2):
+def check_permutation(string1, string2):
     a = list(string1)
     b = list(string2)
     # Two different length of string , cannot be a permutation
@@ -26,15 +26,16 @@ def checkPermutation(string1, string2):
 
 
 class TestIsUnique(unittest.TestCase):
+    data = [
+        ("ashok", "kosha", True),
+        ("asd", "dsa", True),
+        ("aksl", "akkl", False)
+    ]
     def testUnique(self):
-        res = checkPermutation("ashok", "kosha")
-        self.assertTrue(res)
+        for [inp1, inp2, expected] in self.data:
+            res = check_permutation(inp1, inp2)
+            self.assertEqual(res,expected)
 
-        res = checkPermutation("asd", "dsa")
-        self.assertTrue(res)
-
-        res = checkPermutation("aksl", "akkl")
-        self.assertFalse(res)
 
 
 if __name__ == "__main__":

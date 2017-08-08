@@ -6,7 +6,7 @@ Given a string , write a function to check if it is a permutation of the other.
 import unittest
 
 
-def palindromePermutation(string):
+def palindrome_permutation(string):
     # Convert to lower
     string = string.lower()
 
@@ -41,7 +41,7 @@ class TestPalPermute(unittest.TestCase):
 
     def test(self):
         for pair in self.data:
-            res = palindromePermutation(pair[0])
+            res = palindrome_permutation(pair[0])
             try:
                 self.assertEqual(res, pair[1])
             except AssertionError:

@@ -7,7 +7,7 @@
 import unittest
 
 
-def checkOneEdit(source, target):
+def check_one_away(source, target):
     # Converts strings to list
     source = list(source)
     target = list(target)
@@ -69,7 +69,7 @@ class TestOneAway(unittest.TestCase):
 
     def test(self):
         for [str1, str2, expected] in self.data:
-            res = checkOneEdit(str1, str2)
+            res = check_one_away(str1, str2)
 
             self.assertEqual(res, expected)
 

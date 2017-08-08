@@ -4,7 +4,7 @@
 import unittest
 
 
-def isUnique(string):
+def is_unique(string):
     # Create bit vector for all possible characters
     bit_vector = [False for i in range(256)]
 
@@ -21,10 +21,10 @@ def isUnique(string):
 
 class TestIsUnique(unittest.TestCase):
     def testUnique(self):
-        res = isUnique("ashok")
+        res = is_unique("ashok")
         self.assertTrue(res)
 
-        res = isUnique("aashok")
+        res = is_unique("aashok")
         self.assertFalse(res)
 
 
