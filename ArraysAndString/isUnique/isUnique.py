@@ -5,8 +5,11 @@ import unittest
 
 
 def isUnique(string):
+    # Create bit vector for all possible characters
     bit_vector = [False for i in range(256)]
 
+    # Set the bit to true , if already True -> Found a duplicate
+    # ord(char) -> Gives ascii value of a character
     for char in string:
         if bit_vector[ord(char)]:
             return False

@@ -15,9 +15,13 @@ import unittest
 
 
 def urlify(string):
+    #Removes all the spaces
     string = string.strip()
+    # Creates a pattern
     pat = re.compile(r'\s+', re.I)
+    # Split with the spaces
     res = re.split(pat, string)
+    # Combine using %20
     return "%20".join(res)
 
 

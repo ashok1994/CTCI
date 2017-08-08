@@ -7,15 +7,20 @@ import unittest
 
 
 def palindromePermutation(string):
+    # Convert to lower
     string = string.lower()
+
+    # Create a bit vector
     bit_vector = [0 for i in range(256)]
 
+    # Count frequency of characters
     for char in string:
         if char != " ":
             bit_vector[ord(char)] += 1
 
-    odd_count = 0
 
+    odd_count = 0
+    # More than one odd frequency character -> Cannot form a palindrome
     for val in bit_vector:
         if val % 2 != 0:
             odd_count += 1
@@ -25,7 +30,7 @@ def palindromePermutation(string):
     return True
 
 
-# print(palindromePermutation("nothing"))
+
 class TestPalPermute(unittest.TestCase):
     data = [
         ("Taco cat", True),

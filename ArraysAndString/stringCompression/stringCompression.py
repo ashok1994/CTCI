@@ -7,28 +7,38 @@
 """
 import unittest
 
-
+# Compresses string
 def compress(string):
-    new_arr = []
+    new_arr = [] # Holds compressed string
     count = 0
     currentChar = ''
+
     for char in string:
+        # First Iteration
         if currentChar == '':
             currentChar = char
             count += 1
-        elif currentChar != char:
 
+        elif currentChar != char:
+            # Prev val != New Char ->
+            # Time to store the prev char and count
             new_arr.append(currentChar)
             new_arr.append(str(count))
             currentChar = char
             count = 1
+
         else:
+            # Keep increasing
             count += 1
 
+    # Append the last character and count
     new_arr.append(currentChar)
     new_arr.append(str(count))
 
+    # Create string
     compressed = "".join(new_arr)
+
+    # Cannot return compressed , if it doesn't actually compresses the string
     if len(compressed) < len(string):
         return compressed
     else:

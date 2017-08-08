@@ -8,25 +8,34 @@ import unittest
 
 
 def checkOneEdit(source, target):
+    # Converts strings to list
     source = list(source)
     target = list(target)
 
+    # If there is only edit or zero edit in the source string
+    # Difference in the length cannot be greater than 1
     if abs(len(source) - len(target)) > 1:
         return False
 
+    # Keeping count of unmatched characters
     not_matched = 0
+
     for char in target:
+        # Remove all chars from source
         if char in source:
             source.remove(char)
         else:
             not_matched += 1
 
+        # If unmatched characters is more than one,
+        # target string is definitely not one edit away
         if not_matched > 1:
             return False
 
+        # Leave when source is empty
         if len(source) == 0:
             break
-
+    # Source length can be at max 1 (The extra character)
     if len(source) <= 1:
         return True
     else:

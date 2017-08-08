@@ -7,7 +7,7 @@
 """
 import unittest
 
-
+# Returns the target location, given initial location
 def getNewValue(matrix, x, y):
     size = len(matrix)
     x_new = y
@@ -15,6 +15,10 @@ def getNewValue(matrix, x, y):
     return (x_new, y_new)
 
 
+
+# Change value of next
+# location with the current one.
+# Next location -> 90 deg rotated location
 def swap(matrix, init_x, init_y, init_val):
     (new_x, new_y) = getNewValue(matrix, init_x, init_y)
     value = matrix[new_x][new_y]
@@ -22,18 +26,19 @@ def swap(matrix, init_x, init_y, init_val):
     return ((new_x, new_y), value)
 
 
-def swap_four(matrix, x, y):
+# Rotate values , index by index, 90 degrees clockwise
+def swapFour(matrix, x, y):
     new_x = x
     new_y = y
     new_value = matrix[x][y]
     for i in range(4):
         ((new_x, new_y), new_value) = swap(matrix, new_x, new_y, new_value)
 
-
+# Rotate the whole matrix 90 deg clockwise
 def rotate(matrix):
     for j in range(int(len(matrix) / 2)):
         for i in range(j, len(matrix) - 1 - j):
-            swap_four(matrix, j, i)
+            swapFour(matrix, j, i)
 
     return matrix
 
