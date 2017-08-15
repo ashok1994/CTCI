@@ -15,6 +15,9 @@ def is_substring(string, sub):
 def string_rotation(str1:str,str2:str):
     new_char = []
     index = 0
+    if len(str1) != len(str2):
+        return False
+
     for char in str2:
         if char == str1[index]:
             new_char.append(char)
@@ -51,7 +54,10 @@ class TestStringRotation(unittest.TestCase):
         ("assam", "ssama", True),
         ("aashok", "ashoka", True),
         ("asgok", "gokas", True),
-        ("watermilkwater", "waterwatermilk", True)
+        ("watermilkwater", "waterwatermilk", True),
+        ('waterbottle', 'erbottlewat', True),
+        ('foo', 'bar', False),
+        ('foo', 'foofoo', False)
     ]
 
     def test_is_substring(self):
