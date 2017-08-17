@@ -12,21 +12,19 @@
 from LinkedLists.LinkedList import LinkedList,Node
 
 
-def delete_middle_node(linked_list:LinkedList, node:Node):
-    curr = linked_list.head
-    while curr.next != None:
-        if curr.next is node:
-            curr.next = node.next
-        else:
-            curr = curr.next
+def delete_middle_node(node:Node):
+    node.data = node.next.data
+    node.next = node.next.next
+
 
 
 
 ll = LinkedList([1,2,3,4,5])
+middle = ll.add(6)
+ll.add_multiple([1,2,3])
 
-curr = ll.head
-
-delete_middle_node(ll,curr.next.next.next.next)
+print(ll)
+delete_middle_node(middle)
 
 print(ll)
 

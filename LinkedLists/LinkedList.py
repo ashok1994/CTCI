@@ -43,12 +43,13 @@ class LinkedList:
 
     # Implement add(self, value) function , add an element to the tail
     def add(self, value):
+        node = Node(value)
         if self.head is None:
-            self.head = self.tail = Node(value)
+            self.head = self.tail = node
         else:
-            self.tail.next = Node(value)
+            self.tail.next = node
             self.tail = self.tail.next
-        return self
+        return node
 
     # Implement add_to_beginning(self, value) function, add an element to the head
     def add_to_beginning(self, value):
