@@ -23,11 +23,11 @@ def return_kth_to_last(linked_list:LinkedList, k:int):
 
 ll = LinkedList([1,2,3,4,5,6])
 print(ll)
-print(3, '--->', return_kth_to_last(ll,3))
+print(3,return_kth_to_last(ll,3))
 
 ll = LinkedList()
 ll.generate(10, 9,45)
 print(ll)
-print(4, '---->', return_kth_to_last(ll,4))
+print(4,return_kth_to_last(ll,4))
 
 
