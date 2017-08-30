@@ -5,6 +5,15 @@
 """
 from LinkedLists.LinkedList import LinkedList
 
+def get_sum_and_carry(a,b,carry):
+    total = sum([a,b])
+    total = sum([total,carry])
+
+    if total >= 10:
+        return (total%10, 1)
+    else:
+        return total,0
+
 
 def sum_list(LL1:LinkedList, LL2:LinkedList):
     carry = 0
@@ -14,39 +23,23 @@ def sum_list(LL1:LinkedList, LL2:LinkedList):
     while head1 is not None and head2 is not None:
         val_a = head1.data
         val_b = head2.data
-        total = val_a+val_b
-        total+=carry
-        if total >= 10:
-            sum_ll.add(total%10)
-            carry = 1
-        else:
-            sum_ll.add(total)
-            carry = 0
+        (s, carry) = get_sum_and_carry(val_a, val_b, carry)
+        sum_ll.add(s)
         head1 = head1.next
         head2 = head2.next
 
     if head1 is None:
         while head2 is not None:
             val_a = head2.data
-            total = carry + val_a
-            if total >= 10:
-                sum_ll.add(total%10)
-                carry = 1
-            else:
-                sum_ll.add(total)
-                carry = 0
+            (s, carry) = get_sum_and_carry(val_a,0,carry)
+            sum_ll.add(s)
             head2 = head2.next
 
     elif head2 is None:
         while head1 is not None:
             val_a = head1.data
-            total = carry + val_a
-            if total >= 10:
-                sum_ll.add(total%10)
-                carry = 1
-            else:
-                sum_ll.add(total)
-                carry = 0
+            (s, carry) = get_sum_and_carry(val_a, 0, carry)
+            sum_ll.add(s)
             head1 = head1.next
     if carry > 0:
         sum_ll.add(carry)
