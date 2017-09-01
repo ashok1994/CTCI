@@ -45,7 +45,46 @@ def sum_list(LL1:LinkedList, LL2:LinkedList):
         sum_ll.add(carry)
     return sum_ll
 
-num1 = LinkedList([9,7,8])
+# Follow Up
+
+class PartialSum():
+    def __init__(self):
+        self.sum = LinkedList()
+        self.carry = 0
+
+
+def sum_list_follow_up(link1, link2):
+    if len(link1) < len(link2):
+        padList(link1, len(link2))
+    elif len(link1) > len(link2):
+        padList(link2, len(link1))
+
+    print(add_util(link1.head, link2.head).sum)
+
+
+def add_util(head1, head2):
+    if head1 == None and head2 == None:
+        return PartialSum()
+    partial_sum = add_util(head1.next, head2.next)
+    total = partial_sum.carry + head1.data + head2.data
+    if total >= 10:
+        partial_sum.sum.add_to_beginning(total%10)
+        partial_sum.carry = 1
+    else:
+        partial_sum.sum.add_to_beginning(total)
+        partial_sum.carry = 0
+    return partial_sum
+
+
+
+def padList(link1:LinkedList, length):
+    while len(link1) != length:
+        link1.add_to_beginning(0)
+
+
+
+
+num1 = LinkedList([9,7,8, 9, 1])
 num2 = LinkedList([6,8,5])
 
-print(sum_list(num1,num2))
+print(sum_list_follow_up(num1,num2))
