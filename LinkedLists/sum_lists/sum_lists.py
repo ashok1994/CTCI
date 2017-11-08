@@ -59,7 +59,7 @@ def sum_list_follow_up(link1, link2):
     elif len(link1) > len(link2):
         padList(link2, len(link1))
 
-    print(add_util(link1.head, link2.head).sum)
+    return add_util(link1.head, link2.head).sum
 
 
 def add_util(head1, head2):
